@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
@@ -12,7 +12,6 @@ function ProductDetail() {
       fetch(`http://localhost:3000/api/products/${id}`)
          .then(response => response.json())
          .then(data => {
-            console.log(data.results);
             setProduct(data.results);
          })
          .catch(error => {
@@ -26,6 +25,9 @@ function ProductDetail() {
             <Sidebar />
             <div id="content-wrapper" className="d-flex flex-column">
                <div className="container mt-4">
+                  <Link to="/products">
+                     <p> <i className="bi bi-arrow-left"></i> Volver</p>
+                  </Link>
                   <h1 className="text-center">{product.length != 0  ? product.destination : 'Producto no encontrado'}</h1>
                   <div className="row mt-4">
                      <div className="col-md-6 offset-md-3 text-center">
